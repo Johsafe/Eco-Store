@@ -1,0 +1,66 @@
+*{
+    margin: 0;
+}
+
+.subHeader{
+    background-image:  linear-gradient(rgba(30, 31, 36, 0.377),rgba(4, 9, 30, 0.068)),url('../../images/heading-bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position:center;
+    padding-top: 8rem;
+    padding-bottom: 5rem;
+    text-align: center;
+}
+.subHeader h1{
+    font-size: 2.5rem;
+    color: red;
+}
+.subHeader p{
+    font-size: 1.5rem;
+}
+.subHeader .button{
+    border: none;
+    background-color: transparent;
+    width: 8rem;
+    color: blue;
+    font-size: 1.5rem;
+    cursor: pointer;
+
+}
+.contact{
+   background-color:  rgb(235, 228, 228);
+  
+}
+.contactHead img{
+    width: 20rem;
+    margin-left: 35%;
+    margin-top: -3.5rem;
+   
+}
+.contactContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+.contactBox{
+    display: block;
+    width: 11rem;
+    text-align: center;
+    margin-left: 0.125rem;
+    margin-bottom: 2rem;
+    
+    
+}
+.contactBox img{
+    width: 5rem;
+    height: 5rem;
+    align-content: center;
+}
+.contactBox h2{
+    color: blue;
+    font-size: 1rem;
+}
+.contactBox p{
+    color: grey;
+    font-size: 1rem;
+}
