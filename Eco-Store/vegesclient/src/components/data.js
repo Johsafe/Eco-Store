@@ -1,113 +1,118 @@
-const data ={
-    products:[
-        {
-            id: 30-463-4839,
-            image:'/img/pepper.png',
-            name: 'pepper',
-            category: 'vegetable',
-            price: 20,
-            inStock: 5,
-            description:'fresh organic pepper that matches your flavor'
-        },
-        {
-            id: 30-456-4839,
-            image:'/img/apples.png',
-            name: 'apple',
-            category: 'fruit',
-            price: 60,
-            inStock: 15,
-            description:'fresh organic apple fruit that matches your flavor'
-        },
-        {
-            id: 30-563-4939,
-            image:'/img/cabbbage.png',
-            name: 'cabbage',
-            category: 'vegetable',
-            price: 40,
-            inStock: 3,
-            description:'fresh organic cabbage that matches your flavor'
-        },
-        {
-            id: 30-463-4879,
-            image:'/img/cassava.png',
-            name: 'cassava',
-            category: 'vegetable',
-            price: 70,
-            inStock: 10,
-            description:'fresh organic tuber that matches your flavor'
-        }
-        ,{
-            id: 30-456-3439,
-            image:'/img/corriender.png',
-            name: 'corriender',
-            category: 'vegetable',
-            price: 10,
-            inStock: 5,
-            description:'fresh organic vegetable that matches your flavor'
-        }
-        ,{
-            id: 30-466-2839,
-            image:'/img/ginger.png',
-            name: 'ginger',
-            category: 'spice',
-            price: 20,
-            inStock: 5,
-            description:'fresh organic spice that matches your flavor'
-        }
-        ,{
-            id: 30-453-4899,
-            image:'/img/kales.png',
-            name: 'kales',
-            category: 'vegetable',
-            price: 50,
-            inStock: 2,
-            description:'fresh organic kales that matches your flavor'
-        },
-        {
-            id: 30-453-6839,
-            image:'/img/mango.png',
-            name: 'mango',
-            category: 'fruit',
-            price: 80,
-            inStock: 5,
-            description:'fresh organic fruit that matches your flavor'
-        },
-        {
-            id: 30-466-4539,
-            image:'/img/mushroom.png',
-            name: 'mushroom',
-            category: 'vegetable',
-            price: 90,
-            inStock: 15,
-            description:'fresh organic mushroom  that matches your flavor'
-        },
-        {
-            id: 30-413-4829,
-            image:'/img/onions.png',
-            name: 'onions',
-            category: 'vegetable',
-            price: 20,
-            inStock: 5,
-            description:'fresh organic onions that matches your flavor'
-        },
-        {
-            id: 30-163-4539,
-            image:'/img/orange.png',
-            name: 'orange',
-            category: 'fruit',
-            price: 20,
-            inStock: 5,
-            description:'fresh sweet organic orange that matches your flavor'
-        },
-        {
-            id: 30-413-4439,
-            image:'/img/lemon.png',
-            name: 'lemon',
-            category: 'fruit',
-            price: 20,
-            inStock: 5,
-            description:'fresh organic lemon that matches your flavor'
-        },
-    ],
+const data = {
+  products: [
+    {
+      // _id:'1',
+      slug: 'coconut',
+      image: '/img/coconut.png',
+      name: 'coconut',
+      category: 'vegetable',
+      qty: 3,
+      price: 90,
+      inStock: 5,
+      description: 'fresh organic coconut that matches your flavor',
+    },
+    {
+      // _id:'2',
+      slug: 'apple',
+      image: '/img/apples.png',
+      name: 'apple',
+      category: 'fruit',
+      qty: 5,
+      price: 160,
+      inStock: 0,
+      description: 'fresh organic apple fruit that matches your flavor',
+    },
+    {
+      // _id:'3',
+      slug: 'cinnamon',
+      image: '/img/cinnamon.png',
+      name: 'cinnamon',
+      category: 'spice',
+      price: 90,
+      qty: 2,
+      inStock: 3,
+      description: 'fresh organic cinnamon spice that matches your flavor',
+    },
+    {
+      // _id:'5',
+      slug: 'corriender',
+      image: '/img/corriender.png',
+      name: 'corriender',
+      qty: 1,
+      category: 'vegetable',
+      price: 10,
+      inStock: 5,
+      description: 'fresh organic vegetable that matches your flavor',
+    },
+    {
+      // _id:'6',
+      slug: 'maize',
+      image: '/img/maize.png',
+      name: 'maize',
+      qty: 1,
+      category: 'cereal',
+      price: 20,
+      inStock: 5,
+      description: 'fresh organic maize that matches your flavor',
+    },
+    {
+      // _id:'8',
+      slug: 'mango',
+      image: '/img/mango.png',
+      name: 'mango',
+      qty: 1,
+      category: 'fruit',
+      price: 100,
+      inStock: 5,
+      description: 'fresh organic fruit that matches your flavor',
+    },
+    {
+      // _id:'9',
+      slug: 'garlic-powder',
+      image: '/img/garlic-powder.png',
+      name: 'garlic-powder',
+      category: 'spice',
+      qty: 1,
+      price: 90,
+      inStock: 15,
+      description: 'fresh organic garlic-powder that matches your flavor',
+    },
+
+    {
+      // id: 3016378439,
+      slug: 'rice',
+      image: '/img/rice1.png',
+      name: 'rice',
+      qty: 5,
+      category: 'cereals',
+      price: 90,
+      inStock: 5,
+      description: 'fresh sweet organic rice that matches your flavor',
+    },
+
+    {
+      // id: 3467134439,
+      slug: 'chilli',
+      image: '/img/chilli.png',
+      name: 'chilli',
+      qty: 4,
+      category: 'fruit',
+      price: 20,
+      inStock: 30,
+      description: 'fresh organic chilli that matches your flavor',
+    },
+
+    {
+      // _id:'10',
+      slug: 'passion',
+      image: '/img/passion.png',
+      name: 'passion',
+      qty: 5,
+      category: 'fruit',
+      price: 50,
+      inStock: 2,
+      description: 'fresh organic passion that matches your flavor',
+    },
+  ],
 };
 export default data;

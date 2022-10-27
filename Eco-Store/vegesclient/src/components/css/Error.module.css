@@ -1,42 +1,39 @@
-*{
-    margin:0;
+* {
+  margin: 0;
 }
-.Error{
-    display: flex;
-    justify-content: center;
-    background-color: rgb(221, 208, 208);
-    align-items: center;
-    padding-bottom: 4.5rem;
-
+.Error {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(221, 208, 208);
+  align-items: center;
+  padding-bottom: 4.5rem;
 }
-.ErrorImg img{
-    width: 20rem;
-    margin-top: 5rem;
+.ErrorImg img {
+  width: 20rem;
+  margin-top: 5rem;
 }
-.ErrorTxt{
-    margin-top: 5rem;
+.ErrorTxt {
+  margin-top: 5rem;
 }
-.ErrorTxt h1{
-    font-size: 3rem;
-    color: red;
-    
+.ErrorTxt h1 {
+  font-size: 3rem;
+  color: red;
 }
-.ErrorTxt h2{
-    font-size: 2rem;
-    
+.ErrorTxt h2 {
+  font-size: 2rem;
 }
-.ErrorTxt p{
-    font-size: 1.5rem;
+.ErrorTxt p {
+  font-size: 1.5rem;
 }
-.ErrorTxt button{
-    width: 15rem;
-    padding: 5px 15px;
-    background-color: chartreuse;
-    border: none;
-    border-radius: 10px 0 20px;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-top: 1.5rem;
-    font-weight: 800;
-    box-shadow: 2px 0 4px 0;
+.ErrorTxt button {
+  width: 15rem;
+  padding: 5px 15px;
+  background-color: chartreuse;
+  border: none;
+  border-radius: 10px 0 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 1.5rem;
+  font-weight: 800;
+  box-shadow: 2px 0 4px 0;
 }
