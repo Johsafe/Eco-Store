@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import CheckoutSteps from '../utils/CheckoutSteps';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import { Store } from '../Store';
 import { useNavigate } from 'react-router-dom';
+import paymentbg from '../../images/paymentbg.png';
 
 export default function PaymentScreen() {
   const navigate = useNavigate();
@@ -35,7 +35,12 @@ export default function PaymentScreen() {
       <Helmet>
         <title>Payment Method</title>
       </Helmet>
+      <div style={{margin:'1rem 0 1.5rem 30rem'}}>
       <div className="container small-container">
+        <div>
+        < img src={paymentbg} alt="payment" style={{width:'20rem'}}/>
+        </div>
+        
         <h1 className="my-3">Payment Method</h1>
         <Form onSubmit={submitHandler}>
           <div className="mb-3">
@@ -51,21 +56,22 @@ export default function PaymentScreen() {
           <div className="mb-3">
             <Form.Check
               type="radio"
-              id="Stripe"
-              label="Stripe"
-              value="Stripe"
-              checked={paymentMethodName === "Stripe"}
+              id="M-pesa"
+              label="M-pesa"
+              value="M-pesa"
+              checked={paymentMethodName === 'M-pesa'}
               onChange={(e) => setPaymentMethod(e.target.value)}
             />
           </div>
           <div className="mb-6">
-            <Button type="submit" className="btn-sm btn-success">
+            <button type="submit" className="btn-sm btn-success">
               {' '}
               Continue
-            </Button>
+            </button>
           </div>
         </Form>
       </div>
+    </div>
     </div>
   );
 }

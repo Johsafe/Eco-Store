@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Badge from 'react-bootstrap/Badge';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { LinkContainer } from 'react-router-bootstrap';
 
 import logo from '../images/logo.png';
 import {
@@ -25,6 +26,7 @@ const Header = () => {
     localStorage.removeItem('userInfo');
     localStorage.removeItem('shippingAddress');
     localStorage.removeItem('paymentMethod');
+    window.location.href = '/signin';
   };
 
   const styleIcon = {
@@ -39,7 +41,9 @@ const Header = () => {
     <div className="header">
       <ToastContainer position="bottom-center" limit={1} />
       <div className="headerLogo">
-        <img src={logo} alt="Jose's Eco-Store" />
+        <Link to="/">
+          <img src={logo} alt="Jose's Eco-Store" />
+        </Link>
       </div>
 
       <div
@@ -48,16 +52,14 @@ const Header = () => {
       >
         <ul>
           <Link className="links" to="/" active="true">
-            Home
+            {' '}
+            Home{' '}
           </Link>
           <Link className="links" to="/about">
             About
           </Link>
-          {/* <Link className="links" to="/shop">
-            Shop
-          </Link> */}
           <Link className="links" to="/contact">
-            Contact
+            Contact{' '}
           </Link>
         </ul>
       </div>
@@ -71,7 +73,7 @@ const Header = () => {
           <Link to="/cart">
             <ShoppingCart className="iconsCart" />
             {cart.cartItems.length > 0 && (
-              <Badge color="danger">
+              <Badge pill color="danger">
                 {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
               </Badge>
             )}
@@ -81,15 +83,14 @@ const Header = () => {
         <div>
           {userInfo ? (
             <Nav className="me-auto">
-              {/* <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">Link</Nav.Link> */}
               <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">
-                  User Profile
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Order Info
-                </NavDropdown.Item>
+                <LinkContainer to="/profile">
+                  <NavDropdown.Item>User Profile</NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to="/orderhistory">
+                  <NavDropdown.Item>Order Info</NavDropdown.Item>
+                </LinkContainer>
+
                 <NavDropdown.Item href="#action/3.3">Setting</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">

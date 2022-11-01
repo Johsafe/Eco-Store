@@ -62,35 +62,35 @@ const ShippingScreen = () => {
           <form onSubmit={onSubmitHandler}>
             <input
               type="text"
-              placeholder="Full name"
+              placeholder="Enter Your Full Names e.g Mwamuye Joseph"
               value={fullName}
               required
               onChange={(e) => setFullName(e.target.value)}
             />
             <input
               type="text"
-              placeholder="Enter address"
+              placeholder="Enter Your Address e.g P.O.BOX 64"
               value={address}
               required
               onChange={(e) => setAddress(e.target.value)}
             />
             <input
               type="text"
-              placeholder="Enter county"
+              placeholder="Enter Your County e.g Mombasa"
               value={county}
               required
               onChange={(e) => setCounty(e.target.value)}
             />
             <input
               type="text"
-              placeholder="Enter city"
+              placeholder="Enter Your City e.g Mombasa"
               value={city}
               required
               onChange={(e) => setCity(e.target.value)}
             />
             <input
               type="text"
-              placeholder="Enter postal code"
+              placeholder="Enter Your Postal e.g 0 5463"
               value={postalCode}
               required
               onChange={(e) => setPostalCode(e.target.value)}

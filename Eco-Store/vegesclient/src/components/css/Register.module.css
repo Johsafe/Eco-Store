@@ -1,0 +1,78 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+  } */
+  
+  .signContainer {
+    /* padding: 9rem 2rem 2rem 0; */
+    width: 60rem;
+    margin-left: 10rem;
+    margin-bottom: 9.6rem;
+    justify-content: center;
+    border-radius: 5px 10px 15px 30px;
+    box-shadow: 1px 2px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .signContainer p {
+    font-size: 1.2rem;
+    margin-left: 4rem;
+  }
+  .signDetails {
+    width: 30rem;
+    background-size: cover;
+    /* padding-top: 1rem;
+    padding-bottom: 1rem; */
+  }
+  .signDetails img {
+    width: 30rem;
+  }
+  .signContainer .txt {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  .signForm {
+    width: 25rem;
+    text-align: center;
+    padding-top: 6rem;
+    padding-bottom: 1rem;
+  }
+  .signContainer h5 {
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  .signContainer input {
+    width: 18rem;
+    padding: 0.5rem;
+    display: block;
+    margin: 0.5rem;
+    margin-left: 3.5rem;
+  }
+  .signContainer button {
+    width: 17rem;
+    background-color: chartreuse;
+    border: none;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 1px 2px;
+  }
+  .checkboxContainer {
+    display: flex;
+    margin-left: 3rem;
+  }
+  .checkboxContainer label{
+      display: flex;
+  }
+  .checkboxContainer input{
+    width:16px;
+    height: 16px;
+  }

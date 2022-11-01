@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useReducer } from 'react';
-import classes from '../css/OrderScreen.module.css';
+import classes from '../css/PlaceOrderScreen.module.css';
 import { LocalShipping, Person, Place } from '@mui/icons-material';
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet-async';
@@ -8,7 +8,7 @@ import { Store } from '../Store';
 import { Link, useNavigate } from 'react-router-dom';
 import LoadingBox from '../utils/LoadingBox';
 import { getError } from '../utils/GetError';
-import Axios from 'axios';
+import axios from 'axios';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -50,35 +50,9 @@ export default function PlaceOrderScreen() {
 
   const placeOrderHandler = async () => {
     try {
-      // dispatch({ type: 'CREATE_REQUEST' });
-
-      // const body = {
-      //   orderItems: cart.cartItems,
-      //   shippingAddress: cart.shippingAddress,
-      //   paymentMethod: cart.paymentMethod,
-      //   itemsPrice: cart.itemsPrice,
-      //   shippingPrice: cart.shippingPrice,
-      //   totalPrice: cart.totalPrice,
-      // };
-      // const data = await fetch('http://localhost:5000/api/orders', {
-      //   method: "POST",
-      //   headers: {"Content-Type": "application/json" },
-      //   body: JSON.stringify(body),
-      // });
-      // const response = await data.json();
-      // if(response){
-      // ctxDispatch({ type: 'CART_CLEAR' });
-      // dispatch({ type: 'CREATE_SUCCESS' });
-      // localStorage.removeItem('cartItems');
-      // navigate(`/order/${data.order._id}`);
-      
-      // }else{
-       
-      //     toast.error('Order placement failed');
-      // }
       dispatch({ type: 'CREATE_REQUEST' });
 
-      const { data } = await Axios.post(
+      const { data } = await axios.post(
         'http://localhost:5000/api/orders',
         {
           orderItems: cart.cartItems,
@@ -86,7 +60,6 @@ export default function PlaceOrderScreen() {
           paymentMethod: cart.paymentMethod,
           itemsPrice: cart.itemsPrice,
           shippingPrice: cart.shippingPrice,
-          taxPrice: cart.taxPrice,
           totalPrice: cart.totalPrice,
         },
         {
@@ -99,12 +72,14 @@ export default function PlaceOrderScreen() {
       dispatch({ type: 'CREATE_SUCCESS' });
       localStorage.removeItem('cartItems');
       navigate(`/order/${data.order._id}`);
+      toast.success(
+        'Thanks for buying goods from us, Order Placed Successfully'
+      );
     } catch (err) {
       dispatch({
         type: 'CREATE_FAIL',
       });
       toast.error(getError(err));
-      
     }
   };
 
@@ -129,7 +104,7 @@ export default function PlaceOrderScreen() {
             <h5>Customer</h5>
             <p>{cart.shippingAddress.fullName}</p>
             <p></p>
-            {/* <p>{userInfo.email}</p> */}
+            <p>{userInfo.email}</p>
           </div>
         </div>
         <div className={classes.orderHeadTxt}>
@@ -165,7 +140,7 @@ export default function PlaceOrderScreen() {
         </div>
       </div>
       <div className={classes.orderBody}>
-        <div>
+        <div className={classes.orderTable}>
           <table className="table table-striped">
             <thead>
               <td></td>
@@ -193,30 +168,32 @@ export default function PlaceOrderScreen() {
 
         <div className={classes.placeOrder}>
           <h2>Order Summary</h2>
-          <table style={{ width: '100%' }}>
-            <tr>
-              <td>
-                <p>Products</p>
-              </td>
-              <td>Ksh.{cart.itemsPrice.toFixed(2)}</td>
-            </tr>
+          <div className={classes.orderTable}>
+            <table className="table table-striped">
+              <tr>
+                <td>
+                  <p>Products</p>
+                </td>
+                <td>Ksh.{cart.itemsPrice.toFixed(2)}</td>
+              </tr>
 
-            <tr>
-              <td>
-                <p>Shipping</p>
-              </td>
-              <td>Ksh.{cart.shippingPrice.toFixed(2)}</td>
-            </tr>
+              <tr>
+                <td>
+                  <p>Shipping</p>
+                </td>
+                <td>Ksh.{cart.shippingPrice.toFixed(2)}</td>
+              </tr>
 
-            <tr>
-              <td>
-                <p>Total</p>
-              </td>
-              <td>
-                <strong>Ksh.{cart.totalPrice.toFixed(2)}</strong>
-              </td>
-            </tr>
-          </table>
+              <tr>
+                <td>
+                  <p>Total</p>
+                </td>
+                <td>
+                  <strong>Ksh.{cart.totalPrice.toFixed(2)}</strong>
+                </td>
+              </tr>
+            </table>
+          </div>
           <div className="d-grid">
             <button
               type="button"

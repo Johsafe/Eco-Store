@@ -51,19 +51,18 @@ export const loginUser = expressAsyncHandler(async (req, res) => {
   const user = await User.findOne({ email });
 
   if (user && (await bcrypt.compare(password, user.password))) {
-    res.json({
+    res.send({
       _id: user.id,
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
-      token: generateToken(user._id),
+      token: generateToken(user),
     });
-  } else {
-    res.status(400);
-    throw new Error('Invalid credentials');
-  }
+    return;
+  } 
+  res.status(401).send({ message :'Invalid email or password'})
 });
-
+ //profile
 export const profileUser = expressAsyncHandler(async (req, res) => {
   const user= await User.findById(req.user._id);
   if(user){
@@ -77,4 +76,32 @@ export const profileUser = expressAsyncHandler(async (req, res) => {
   res.status(404);
   throw  new Error("user not found")
 }
+
+
 });
+
+
+  //update profile
+export const updateProfileUser = expressAsyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+    if (user) {
+      user.name = req.body.name || user.name;
+      user.email = req.body.email || user.email;
+      if (req.body.password) {
+        user.password = bcrypt.hashSync(req.body.password, 8);
+      }
+
+      const updatedUser = await user.save();
+      res.send({
+        _id: updatedUser._id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        isAdmin: updatedUser.isAdmin,
+        token: generateToken(updatedUser),
+      });
+    } else {
+      res.status(404).send({ message: 'User not found' });
+    }
+  })
+
+

@@ -1,11 +1,13 @@
-import { Visibility, VisibilityOff } from '@material-ui/icons';
+// import { Visibility, VisibilityOff } from '@material-ui/icons';
+import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import welcome from '../../images/welcome.png';
-import classes from '../css/Signin.module.css';
+import signup from '../../images/signup.jpg';
+import classes from '../css/Register.module.css';
 import { Store } from '../Store';
+import { getError } from '../utils/GetError';
 
 function RegisterScreen() {
   const navigate = useNavigate();
@@ -17,18 +19,17 @@ function RegisterScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setconfirmPassword] = useState('');
-  const [isShown ,setIsShown] = useState(false);
-  const [passwordType, setPasswordType] = useState("password");
+  const [isShown, setIsShown] = useState(false);
+  const [passwordType, setPasswordType] = useState('password');
 
-  const togglePassword =() =>{
-    setIsShown((isShown) => !isShown)
-    // if(passwordType==="password")
-    //   {
-    //    setPasswordType("text")
-    //    return;
-    //   }else{
-    //   setPasswordType("password")
-    // }
+  const togglePassword = () => {
+    setIsShown((isShown) => !isShown);
+    if (passwordType === 'password') {
+      setPasswordType('text');
+      return;
+    } else {
+      setPasswordType('password');
+    }
   };
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -52,24 +53,19 @@ function RegisterScreen() {
       return;
     }
     try {
-      const body = { name, email, password };
-      const data = await fetch(' http://localhost:5000/api/users/register', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(body),
-      });
-      const response = await data.json();
-      
-        ctxDispatch({
-          type: 'USER_SIGNIN',
-          payload: response,
-        });
-        localStorage.setItem('UserInfo', response);
-        toast.success('Sign  Up successful');
-        navigate(redirect || '/');
-      
+      const { data } = await axios.post(
+        'http://localhost:5000/api/users/register',
+        {
+          name,
+          email,
+          password,
+        }
+      );
+      ctxDispatch({ type: 'USER_SIGNIN', payload: data });
+      localStorage.setItem('userInfo', JSON.stringify(data));
+      navigate(redirect || '/');
     } catch (err) {
-      console.error(err.message);
+      toast.error(getError(err));
     }
   };
   useEffect(() => {
@@ -85,9 +81,9 @@ function RegisterScreen() {
 
       <div className={classes.signContainer}>
         <div className={classes.signDetails}>
-          <img src={welcome} alt="welcome" />
-          <p>To stay in contact with us</p>
-          <p>Please sign up with your personal account details</p>
+          <img src={signup} alt="welcome" />
+          {/* <p>To stay in contact with us</p>
+          <p>Please sign up with your personal account details</p> */}
         </div>
         <div className={classes.signForm}>
           <h5>Please Signup to Continue</h5>
@@ -104,37 +100,29 @@ function RegisterScreen() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-          
+
             <input
-              type={isShown ? "text" : "password"}
+              type={isShown ? 'text' : 'password'}
               placeholder="Enter Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              
             />
-            {/* // <div className="input-group-btn">
-            //          <button className="btn btn-outline-primary" onClick={togglePassword}>
-            //          { isShown ? <Visibility/> :<VisibilityOff/> }
-            //          </button>
-            //         </div> */}
-            {/* <Visibility  checked={isShown}/>  */}
-            
-            {/* <div className={classes.checkboxContainer}>
-            <label htmlFor="checkbox">Show password?</label>
-            <input
-            id="checkbox"
-            type="checkbox"
-            checked={isShown}
-            
-           / >
-            </div> */}
 
             <input
-              type="text"
+              type={isShown ? 'text' : 'password'}
               placeholder="Confirm Password"
               value={confirmPassword}
               onChange={(e) => setconfirmPassword(e.target.value)}
             />
+            <div className={classes.checkboxContainer}>
+              <input
+                id="checkbox"
+                type="checkbox"
+                checked={isShown}
+                onChange={togglePassword}
+              />
+              <label htmlFor="checkbox">Show password?</label>
+            </div>
 
             <button type="submit">Sign Up</button>
             <h5>

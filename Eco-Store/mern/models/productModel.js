@@ -14,7 +14,7 @@ const productSchema = new mongoose.Schema(
     price: { type: Number, required: true },
     inStock: { type: Number, required: true },
     qty: { type: String, required: true },
-    // createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     updatedAt: Date,
   },
   {

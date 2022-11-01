@@ -18,9 +18,9 @@ export const createdProduct = expressAsyncHandler(async (req, res) => {
     qty,
     inStock,
     productImage: req.file.originalname,
-    // createdBy: req.user._id,
+    createdBy: req.user._id,
   });
-  console.log(req.file.originalname);
+  // console.log(req.file.originalname);
   product.save((error, product) => {
     if (error) return res.status(400).json({ error });
     if (product) {

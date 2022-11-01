@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -27,36 +27,18 @@ function LoginScreen() {
     if (!password) {
       return toast.error('please input password');
     }
+
     try {
-      const body = { email, password };
-      const data = await fetch(' http://localhost:5000/api/users/login', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(body),
-      });
-      const response = await data.json();
-      // console.log(response);
-      if (response.token) {
-        ctxDispatch({
-          type: 'USER_SIGNIN',
-          payload: response,
-        });
-        localStorage.setItem('UserInfo', response.token);
-        toast.success('Log in successful');
-        navigate(redirect || '/');
-      } else {
-        toast.error('Invalid Credentials');
-      }
-      // const { data } = await Axios.post(
-      //   'http://localhost:5000/api/users/signin',
-      //   {
-      //     email,
-      //     password,
-      //   }
-      // );
-      // ctxDispatch({ type: 'USER_SIGNIN', payload: data });
-      // localStorage.setItem('userInfo', JSON.stringify(data));
-      // navigate(redirect || '/');
+      const { data } = await axios.post(
+        'http://localhost:5000/api/users/login',
+        {
+          email,
+          password,
+        }
+      );
+      ctxDispatch({ type: 'USER_SIGNIN', payload: data });
+      localStorage.setItem('userInfo', JSON.stringify(data));
+      navigate(redirect || '/');
     } catch (err) {
       toast.error(getError(err));
     }

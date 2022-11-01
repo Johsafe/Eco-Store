@@ -77,7 +77,8 @@ export default function Cart() {
                             updateCartHandler(item, item.quantity - 1)
                           }
                           className="btn-sm btn-success"
-                          disable={item.quantity === 1}
+                          variant="light"
+                          disabled={item.quantity === 1}
                         >
                           <Remove />{' '}
                         </button>
@@ -88,7 +89,7 @@ export default function Cart() {
                             updateCartHandler(item, item.quantity + 1)
                           }
                           className="btn-sm btn-success"
-                          disable={item.quantity === item.inStock}
+                          disabled={item.quantity === item.inStock}
                         >
                           <Add />{' '}
                         </button>
@@ -117,7 +118,7 @@ export default function Cart() {
             </table>
             <div>
               <div className={classes.cartButton}>
-                <Link to="/shop">
+                <Link to="/">
                   <button>Continue Shopping</button>
                 </Link>
 

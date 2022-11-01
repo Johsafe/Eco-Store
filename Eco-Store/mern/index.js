@@ -1,5 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
 
 import dotenv from 'dotenv';
 import data from './data.js';
@@ -23,9 +24,11 @@ import categoryRouter from './routes/categoryRoutes.js';
 
 
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 app.use('/api/data', dataRouter);
 app.use('/api/products', productRouter);

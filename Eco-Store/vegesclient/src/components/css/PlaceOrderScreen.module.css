@@ -1,0 +1,82 @@
+
+.orderHead {
+  margin-left: 5rem;
+  width: 77rem;
+  background-color: rgb(159, 240, 159);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 2rem;
+  padding-top: 4rem;
+  height: 11rem;
+  font-size: 1.2rem;
+}
+.orderHeadTxt {
+  display: flex;
+  margin: 0;
+  gap: 1rem;
+}
+.orderHeadTxt h5 {
+  font-weight: 700;
+  margin-right: 10rem;
+}
+
+.orderBody {
+  width: 77rem;
+  margin-left: 3rem;
+  display: flex;
+  padding-top: 2rem;
+  padding-bottom: 4.5rem;
+  overflow: hidden;
+}
+.orderTable{
+  flex: 50%;
+  padding: 2rem;
+}
+.orderBody img {
+  width: 5rem;
+}
+
+.orderBody th, td {
+  padding: 5px;
+  text-align: left;
+  font-size: 1.3rem;
+}
+ thead td {
+  font-weight: 600;
+}
+table{
+  width: 100%;
+}
+tr td p {
+  font-weight: 550;
+}
+
+.placeOrder td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px ;
+}
+
+.placeOrder tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.orderBody button {
+  width: 16rem;
+  margin-left: 2rem;
+  cursor: pointer;
+  background-color: rgb(159, 240, 159);
+  border: none;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 800;
+}
+@media (max-width: 768) {
+  .orderHead {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 420px) {
+}
