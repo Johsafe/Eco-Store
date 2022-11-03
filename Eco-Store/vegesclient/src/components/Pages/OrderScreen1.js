@@ -8,6 +8,8 @@ import { Store } from '../Store';
 import { getError } from '../utils/GetError';
 import LoadingBox from '../utils/LoadingBox';
 import MessageBox from '../utils/MessageBox';
+import mpesa from '../../images/mpesa.png'
+import paypal from '../../images/paypal.png'
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -106,13 +108,15 @@ export default function OrderScreen1() {
               <p>
                 {order.isPaid ? (
                   <MessageBox variant="success">
-                    Paid at {order.paidAt} 
+                    Paid at {order.paidAt}
                   </MessageBox>
                 ) : (
                   // <MessageBox variant="danger">Not Paid</MessageBox>
-                  <div className='bg-danger p-1 col-12'>
-                  <p className='text-white text-center text-sm-start'>Not Paid</p>
-                </div>
+                  <div className="bg-danger p-1 col-12">
+                    <p className="text-white text-center text-sm-start">
+                      Not Paid
+                    </p>
+                  </div>
                 )}
               </p>
             </div>
@@ -139,9 +143,11 @@ export default function OrderScreen1() {
                   </MessageBox>
                 ) : (
                   // <MessageBox variant="danger">Not Delivered</MessageBox>
-                  <div className='bg-danger p-1 col-10'>
-                  <p className='text-white text-center text-sm-start'>Not Delivered</p>
-                </div>
+                  <div className="bg-danger p-1 col-10">
+                    <p className="text-white text-center text-sm-start">
+                      Not Delivered
+                    </p>
+                  </div>
                 )}
               </p>
             </div>
@@ -162,12 +168,15 @@ export default function OrderScreen1() {
               {order.orderItems.map((item) => (
                 <tr key={item._id}>
                   <td>
-                    <img src={item.image} alt={item.name} />
+                    <img
+                      src={`http://localhost:5000/${item.productImage}`}
+                      alt={item.name}
+                    />
                   </td>
 
                   <td> {item.name} </td>
-                  <td>Quantity ({item.qty})</td>
-                  <td>Ksh. {item.price * item.qty}</td>
+                  <td>Quantity ({item.quantity})</td>
+                  <td>Ksh. {item.price}</td>
                 </tr>
               ))}
             </tbody>
@@ -201,6 +210,13 @@ export default function OrderScreen1() {
                 </td>
               </tr>
             </table>
+            <div>
+              {order.paymentMethod === 'M-pesa' ? (
+                <button><img src={mpesa} alt="" /></button>
+              ) : (
+                <button><img src={paypal} alt="" /></button>
+              )}
+            </div>
           </div>
         </div>
       </div>

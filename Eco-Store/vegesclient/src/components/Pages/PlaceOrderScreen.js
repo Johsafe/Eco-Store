@@ -26,7 +26,7 @@ const reducer = (state, action) => {
 export default function PlaceOrderScreen() {
   const styleIcon = {
     fontSize: '5rem',
-    cursor: 'pointer',
+    cursor: 'pointer', 
     borderRadius: '50%',
     backgroundColor: '#dddddd',
     padding: '20px',
@@ -36,6 +36,7 @@ export default function PlaceOrderScreen() {
 
   const [{ loading }, dispatch] = useReducer(reducer, {
     loading: false,
+   
   });
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -152,7 +153,10 @@ export default function PlaceOrderScreen() {
               {cart.cartItems.map((item) => (
                 <tr key={item._id}>
                   <td>
-                    <img src={item.image} alt={item.name} />
+                    <img 
+                    // src={item.image}
+                     src={`http://localhost:5000/${item.productImage}`}
+                     alt={item.name} />
                   </td>
 
                   <td>

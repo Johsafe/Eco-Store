@@ -6,6 +6,7 @@ import spices from '../../images/organic-spices.png';
 import veges from '../../images/vegges-logo.png';
 import fruit from '../../images/fruit-logo.png';
 import cereals from '../../images/org-cereals.png';
+import freshmeat from '../../images/freshmeat.png';
 import { Helmet } from 'react-helmet-async';
 
 const Shop = () => {
@@ -63,6 +64,11 @@ const Shop = () => {
           <Link to="" className={classes.box}>
             <img src={cereals} alt="cereals" />
             <h3>Cereals</h3>
+          </Link>
+
+          <Link to="" className={classes.box}>
+            <img src={freshmeat} alt="cereals" />
+            <h3>Meat & Eggs</h3>
           </Link>
         </div>
         <div className={classes.bar}>

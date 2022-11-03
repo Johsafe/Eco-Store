@@ -38,7 +38,8 @@ const Itemcard = (props) => {
             <Link to={`/product/${product.slug}`}>
               <img
                 className={classes.img}
-                src={product.productImage}
+                // src={product.productImage}
+                src={`http://localhost:5000/${product.productImage}`}
                 alt={product.name}
               />
             </Link>

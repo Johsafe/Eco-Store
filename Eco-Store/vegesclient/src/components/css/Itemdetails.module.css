@@ -2,14 +2,14 @@
   margin: 0;
 }
 .detail {
-  width: 50rem;
+  width: 55rem;
   border-radius: 5px 10px 15px 30px;
   box-shadow: 1px 3px;
   display: flex;
   align-items: center;
   justify-items: center;
-  margin: 0 0 3.9rem 6rem;
-  padding: 4rem 2rem 5px 5px;
+  margin: 0 0 8.2rem 14rem;
+  padding: 8rem 2rem 0 5px;
   gap: 2rem;
 }
 
@@ -24,6 +24,7 @@
   border-bottom: 0.1rem solid rgba(0, 0, 0, 0.1);
 }
 .detailDescr {
+  display: flex;
   font-size: 1rem;
   border-bottom: 0.1rem solid rgba(0, 0, 0, 0.1);
 }

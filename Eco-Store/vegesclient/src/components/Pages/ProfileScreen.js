@@ -15,14 +15,14 @@ export default function ProfileScreen() {
       <Helmet>
         <title>User Profile</title>
       </Helmet>
-      <h1>User Profile</h1>
+      <h1 className='my-2'>My User Profile</h1>
 
       <div className="profileContainer">
         <div>
           <img src={avatar} alt="avatar" className="profileImg" />
           <h1>{userInfo.name}</h1>
 
-          <button className="btnProfile"><Link to='/creator'>Edit My profile</Link></button>
+          <button className="btnProfile"><Link to='/editprofile'>Edit My profile</Link></button>
           <button className="btnProfile">Change Password</button>
         </div>
         <div className="information">

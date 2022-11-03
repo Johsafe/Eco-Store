@@ -62,7 +62,10 @@ export default function Cart() {
                 {cartItems.map((item) => (
                   <tr key={item._id}>
                     <td>
-                      <img src={item.image} alt={item.name} />
+                      <img 
+                      // src={item.image}
+                      src={`http://localhost:5000/${item.productImage}`}
+                       alt={item.name} />
                     </td>
                     <td>
                       <Link to={`/product/${item.slug}`}>{item.name}</Link>

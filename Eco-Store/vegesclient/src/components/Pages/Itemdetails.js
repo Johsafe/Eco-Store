@@ -61,7 +61,10 @@ const Itemdetails = () => {
       </Helmet>
       <div className={classes.detail}>
         <div>
-          <img src={product.image} alt={product.name} />
+          <img 
+          src={`http://localhost:5000/${product.productImage}`}
+          // src={product.image} 
+          alt={product.name} />
         </div>
 
         <div className={classes.detailCard}>

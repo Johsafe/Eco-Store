@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import classes from '../css/ShippingScreen.module.css';
 import { Store } from '../Store';
 import CheckoutSteps from '../utils/CheckoutSteps';
+import shipping from '../../images/shipping.png'
 
 const ShippingScreen = () => {
   const navigate = useNavigate();
@@ -57,6 +58,9 @@ const ShippingScreen = () => {
       </Helmet>
       <CheckoutSteps step1 step2></CheckoutSteps>
       <div className={classes.shipContainer}>
+        <div>
+          <img src={shipping} alt="" />
+        </div>
         <div className={classes.delivery}>
           <h4>Delivery Address</h4>
           <form onSubmit={onSubmitHandler}>

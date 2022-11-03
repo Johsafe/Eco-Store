@@ -24,6 +24,7 @@ import OrderScreen1 from './components/Pages/OrderScreen1';
 import ProfileScreen from './components/Pages/ProfileScreen';
 import OrderHistory from './components/Pages/OrderHistory';
 import CommingSoon from './components/CommingSoon';
+import EditProfile from './components/Pages/EditProfile';
 
 function App() {
   return (
@@ -45,8 +46,9 @@ function App() {
           <Route path="/placeorder" element={<PlaceOrderScreen />} />
           <Route path="/order/:id" element={<OrderScreen1 />} />
           <Route path="/profile" element={<ProfileScreen />} />
+          <Route path="/editprofile" element={<EditProfile />} />
           <Route path="/orderhistory" element={<OrderHistory />} />
-          <Route path="/creator" element={<CommingSoon/>}/>
+          <Route path="/creator" element={<CommingSoon />} />
           <Route path="*" element={<Error />} />
         </Routes>
         <Footer />

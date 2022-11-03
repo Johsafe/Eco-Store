@@ -15,6 +15,9 @@
   box-shadow: 1px 2px;
   gap: 3rem;
 }
+.shipContainer img{
+   width: 23rem;
+}
 .delivery {
   padding: 2rem;
   text-align: center;
