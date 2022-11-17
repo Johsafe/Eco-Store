@@ -1,0 +1,34 @@
+.cardheader {
+  display: flex;
+  background: rgb(12, 139, 12);
+  color: white;
+  justify-content: space-between;
+  padding: 0.5rem;
+  height: 5rem;
+}
+.date {
+  font-weight: 900;
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+.subheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+}
+.orderheaderdetails {
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.2rem;
+  margin: 0;
+  gap: 1rem;
+}
+.orderheaderdetails h5 {
+  font-weight: 700;
+}
+
+.orderbody{
+    display: flex;
+}

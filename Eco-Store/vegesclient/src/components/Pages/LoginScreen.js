@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import welcome from '../../images/welcome.png';
 import classes from '../css/Signin.module.css';
+import Header from '../Layout/header';
 import { Store } from '../Store';
 import { getError } from '../utils/GetError';
 
@@ -50,6 +51,7 @@ function LoginScreen() {
   }, [navigate, redirect, userInfo]);
   return (
     <div>
+      <Header/>
       <Helmet>
         <title>Sign In</title>
       </Helmet>

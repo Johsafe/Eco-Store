@@ -10,6 +10,7 @@ import LoadingBox from '../utils/LoadingBox';
 import MessageBox from '../utils/MessageBox';
 import mpesa from '../../images/mpesa.png'
 import paypal from '../../images/paypal.png'
+import Header from '../Layout/header';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -74,6 +75,7 @@ export default function OrderScreen1() {
     <MessageBox variant="danger">{error}</MessageBox>
   ) : (
     <div>
+      <Header/>
       <Helmet>
         <title>Order {orderId}</title>
       </Helmet>

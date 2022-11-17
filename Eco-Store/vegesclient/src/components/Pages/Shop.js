@@ -8,16 +8,18 @@ import fruit from '../../images/fruit-logo.png';
 import cereals from '../../images/org-cereals.png';
 import freshmeat from '../../images/freshmeat.png';
 import { Helmet } from 'react-helmet-async';
+import Header from '../Layout/header';
 
 const Shop = () => {
   window.scrollTo(0, 0);
-  
 
   let navigate = useNavigate();
   return (
     <div>
+      <Header />
+
       <Helmet>
-       <title>Our Product</title>
+        <title>Our Product</title>
       </Helmet>
       <div className={classes.subHeader}>
         <h1>Our Products</h1>
@@ -66,10 +68,10 @@ const Shop = () => {
             <h3>Cereals</h3>
           </Link>
 
-          <Link to="" className={classes.box}>
+          {/* <Link to="" className={classes.box}>
             <img src={freshmeat} alt="cereals" />
             <h3>Meat & Eggs</h3>
-          </Link>
+          </Link> */}
         </div>
         <div className={classes.bar}>
           <h2>Our Products</h2>

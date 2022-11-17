@@ -1,19 +1,45 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Itemcard from './itemcard';
 import { Container, Grid } from '@mui/material';
 import Shop from './Pages/Shop.js';
+import axios from 'axios';
+import MessageBox from './utils/MessageBox';
+import LoadingBox from './utils/LoadingBox';
+import logger from 'use-reducer-logger';
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'FETCH_REQUEST':
+      return { ...state, loading: true };
+
+    case 'FETCH_SUCCESS':
+      return { ...state, products: action.payload, loading: false };
+
+    case 'FETCH_FAIL':
+      return { ...state, loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
 
 const Itemlist = () => {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
+
+  const [{ loading, error, products }, dispatch] = useReducer(logger(reducer), {
+    products: [],
+    loading: true,
+    error: '',
+  });
 
   const fetchProducts = async () => {
+    dispatch({ type: 'FETCH_REQUEST' });
     try {
-      const fetched = await fetch('http://localhost:5000/api/products');
-      const jsonData = await fetched.json();
-      setProducts(jsonData);
+      const fetched = await axios.get('http://localhost:5000/api/products');
+      dispatch({ type: 'FETCH_SUCCESS', payload: fetched.data });
     } catch (err) {
-      console.error(err.message);
+      dispatch({ type: 'FETCH_FAIL', payload: err.message });
     }
   };
 
@@ -29,19 +55,27 @@ const Itemlist = () => {
 
       <Shop />
 
-      <Container>
-        <Grid
-          container
-          spacing={1}
-          sx={{ justifyContent: 'center', flexWrap: 'wrap' }}
-        >
-          {products.map((product) => (
-            <Grid product>
-              <Itemcard key={product.slug} product={product} />
+      <div>
+        {loading ? (
+          <LoadingBox />
+        ) : error ? (
+          <MessageBox variant="danger">{error}</MessageBox>
+        ) : (
+          <Container>
+            <Grid
+              container
+              spacing={2}
+              // sx={{ justifyContent: 'center', flexWrap: 'wrap' }}
+            >
+              {products.map((product) => (
+                <Grid product>
+                  <Itemcard key={product.slug} product={product} />
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
-      </Container>
+          </Container>
+        )}
+      </div>
     </div>
   );
 };

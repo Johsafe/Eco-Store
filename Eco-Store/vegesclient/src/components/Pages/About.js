@@ -16,11 +16,13 @@ import gallery9 from '../../images/gallery9.jpg';
 import gallery10 from '../../images/gallery10.jpg';
 import gallery11 from '../../images/gallery11.jpg';
 import gallery12 from '../../images/gallery12.jpg';
+import Header from '../Layout/header';
 
 const About = () => {
   let navigate = useNavigate();
   return (
     <div>
+      <Header/>
       <div className={classes.subHeader}>
         <h1>About Us</h1>
         <p>

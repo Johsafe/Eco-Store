@@ -8,6 +8,7 @@ import LoadingBox from '../utils/LoadingBox';
 import MessageBox from '../utils/MessageBox';
 // import moment from 'moment';
 import { Visibility } from '@mui/icons-material';
+import Header from '../Layout/header';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -53,6 +54,7 @@ export default function OrderHistory() {
   }, [userInfo]);
   return (
     <div>
+      <Header/>
       <Helmet>
         <title>My Orders</title>
       </Helmet>
@@ -64,23 +66,22 @@ export default function OrderHistory() {
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
-        // {order.orderItems.length === 0 ? (
         //   <div>
         //     <h1>No orders yet please purchase some</h1>
         //   </div>
-        // ) : (
+        // ) :(
         <div
           style={{
             marginLeft: '3rem ',
             marginTop: '3rem',
             marginBottom: '7.5rem',
-            borderRadius: '5px 10px 15px 30px',
-            boxShadow: '1px 2px',
+            // borderRadius: '5px 10px 15px 30px',
+            // boxShadow: '1px 2px',
             padding: '1rem',
             width: '75rem',
           }}
         >
-          <table className="table table-sm table-striped">
+          <table className="table table-hover">
             <thead>
               <tr>
                 <th>ID</th>
@@ -127,7 +128,6 @@ export default function OrderHistory() {
           </table>
         </div>
       )}
-      {/* )} */}
     </div>
     // }
   );

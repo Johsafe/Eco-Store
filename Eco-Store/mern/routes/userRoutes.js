@@ -2,8 +2,8 @@ import express from 'express';
 import bcrypt from 'bcryptjs';
 import expressAsyncHandler from 'express-async-handler';
 import User from '../models/userModel.js';
-import { isAuth } from '../Middleware/AuthMiddleware.js';
-import { generateToken } from '../utils/jwt.js';
+import { isAdmin, isAuth } from '../Middleware/AuthMiddleware.js';
+import {  generateToken } from '../utils/jwt.js';
 
 const userRouter = express.Router();
 
@@ -42,6 +42,11 @@ userRouter.post(
     throw new Error('Please add all fields');
   }
 
+  if (password.length < 7) {
+    res.status(400);
+    throw new Error("Password must be up to 7 characters");
+  }
+
     const userExists = await User.findOne({ email });
 
     if (userExists) {
@@ -72,8 +77,6 @@ userRouter.post(
     }
   
   })
-
-
 );
 userRouter.put(
   '/profile',
@@ -101,21 +104,37 @@ userRouter.put(
   })
 );
 
-userRouter.put(
-  '/profile',
-  isAuth,
+//create admin user
+userRouter.post(
+  '/loginadmin',isAdmin,
   expressAsyncHandler(async (req, res) => {
-    const user = await User.findById(req.user._id);
-    if (user) {
-      res.json({
-        _id: user._id,
+    const {email ,password} = req.body;
+
+    if (!email || !password) {
+      res.status(400);
+      throw new Error('Please add all fields');
+    }
+  
+    const user = await User.findOne({ email });
+    if (user && (await bcrypt.compare(password, user.password))) {
+      res.send({
+        _id: user.id,
         name: user.name,
         email: user.email,
-        createdAt: user.createdAt,
+        isAdmin: user.isAdmin,
+        token: generateToken(user),
       });
-    } else {
-      res.status(404).send({ message: 'User not found' });
+      return;
     }
+    res.status(401).send({ message: 'Not authorized' });
   })
+   
 );
+
+//get all users
+userRouter.get('/' ,isAdmin, expressAsyncHandler(async(req,res) =>{
+
+  const users = await User.find({})
+  res.send(users);
+}))
 export default userRouter;

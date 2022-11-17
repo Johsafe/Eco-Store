@@ -9,11 +9,13 @@ import Number from '../../images/contactNum.png';
 import Address from '../../images/Address.png';
 import Message from '../../images/Message.png';
 import Telephone from '../../images/Telephone.png';
+import Header from '../Layout/header';
 
 const Contact = () => {
   let navigate = useNavigate();
   return (
     <div>
+      <Header/>
       <div className={classes.subHeader}>
         <h1>Our Contact</h1>
         <p>

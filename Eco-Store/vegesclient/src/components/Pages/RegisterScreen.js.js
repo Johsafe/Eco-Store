@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import signup from '../../images/signup.jpg';
 import classes from '../css/Register.module.css';
+import Header from '../Layout/header';
 import { Store } from '../Store';
 import { getError } from '../utils/GetError';
 
@@ -75,6 +76,7 @@ function RegisterScreen() {
   }, [navigate, redirect, userInfo]);
   return (
     <div>
+      <Header />
       <Helmet>
         <title>Sign Up</title>
       </Helmet>

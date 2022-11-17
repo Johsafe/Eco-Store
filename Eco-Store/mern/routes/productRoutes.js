@@ -1,7 +1,7 @@
 import express from 'express';
 // import { createdProduct } from '../controllers/productController.js';
 import expressAsyncHandler from 'express-async-handler';
-import { isAuth } from '../Middleware/AuthMiddleware.js';
+import { isAdmin, isAuth } from '../Middleware/AuthMiddleware.js';
 import slugify from 'slugify';
 import Product from '../models/productModel.js';
 import Category from '../models/categoryModel.js';
@@ -14,9 +14,7 @@ const productRouter = express.Router();
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null ,path.join(path.dirname(__dirname), './mern/uploads'));
-  
-    
+    cb(null, path.join(path.dirname(__dirname), './mern/uploads'));
   },
   filename: function (req, file, cb) {
     cb(null, shortid.generate() + '-' + file.originalname);
@@ -49,23 +47,27 @@ productRouter.post(
       productImage: req.file.filename,
       createdBy: req.user._id,
     });
-    product.save((error, product) => {
-      if (error) return res.status(400).json({ error });
-      if (product) {
-        res.status(201).json({ product, file: req.file });
-      }
-    });
+    const newProduct = await product.save();
+    if (newProduct) {
+      return res
+        .status(201)
+        .send({ message: 'New Product Created', data: newProduct });
+    }
+    return res.status(500).send({ message: ' Error in Creating Product.' });
+    // product.save((error, product) => {
   })
 );
 
 //get products
 
-productRouter.get('/', async (req, res) => {
-  //fetch all products
-  const products = await Product.find();
-  res.send(products);
-});
-
+productRouter.get(
+  '/',
+  expressAsyncHandler(async (req, res) => {
+    const products = await Product.find();
+    res.send(products);
+  })
+);
+//get product by slug
 productRouter.get('/slug/:slug', async (req, res) => {
   const product = await Product.findOne({ slug: req.params.slug });
   if (product) {
@@ -75,17 +77,7 @@ productRouter.get('/slug/:slug', async (req, res) => {
   }
 });
 
-//find product by category
-productRouter.get('/productbycategory' ,async(req,res) =>{
-  const {slug} = req.params;
-  const myproductCategory = Category.findOne({slug:slug}).select('_id name');
-  if(myproductCategory){
-  res.send(myproductCategory)
-  }else{
-    res.status(404).send({ message:'Product not present'})
-  }
-})
-
+//get a product by id
 productRouter.get('/:id', async (req, res) => {
   const product = await Product.findById(req.params.id);
   if (product) {
@@ -94,5 +86,63 @@ productRouter.get('/:id', async (req, res) => {
     res.status(404).send({ message: 'Product not found' });
   }
 });
+
+//update product
+productRouter.patch(
+  '/:id',
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const { id } = req.params;
+
+    const updatedProduct = await Product.findOneAndUpdate(
+      { _id: id },
+      {
+        ...req.body
+      }
+    );
+    if (!updatedProduct) {
+      res.status(500).send({ message: ' Error in Updating Product.' });
+    }
+    if (updatedProduct) {
+      return res
+        .status(200)
+        .send({ message: 'Product Updated', data: updatedProduct });
+    }
+  })
+);
+
+//updatedProduct
+productRouter.put('/product/:id', (req, res)=>{
+  let result = Product.updateOne(
+    {_id:req.params.id},
+    {$set: req.body}
+  )
+  res.send(result)
+})
+
+//delete a product
+productRouter.delete(
+  '/:id',
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const deletedProduct = await Product.findById(req.params.id);
+    if (deletedProduct) {
+      await deletedProduct.remove();
+      res.send({ message: 'Product Deleted', deletedProduct });
+    } else {
+      res.send('Error in Deletion.');
+    }
+  })
+);
+
+// productRouter.get('/:id', async(req,res) =>{
+//   const product = await Category.findById(req.params.id);
+//   if (product) {
+//     res.send(product);
+//   }else{
+//     res.status(404).send({ message: 'Product not found'});
+//     console.log(product)
+//   }
+// })
 
 export default productRouter;

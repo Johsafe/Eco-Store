@@ -11,7 +11,6 @@ import Contact from './components/Pages/Contact.js';
 import Error from './components/Pages/Error.js';
 import Itemdetails from './components/Pages/Itemdetails.js';
 import Footer from './components/footer';
-import Header from './components/header';
 import Cart from './components/Pages/Cart';
 
 //screens
@@ -25,13 +24,26 @@ import ProfileScreen from './components/Pages/ProfileScreen';
 import OrderHistory from './components/Pages/OrderHistory';
 import CommingSoon from './components/CommingSoon';
 import EditProfile from './components/Pages/EditProfile';
+//admin
+import Signin from './Admin/Pages/Signin';
+import Navigation from './Admin/utils/Navigation';
+import Dashnav from './Admin/utils/Dashnav';
+import DashboardScreen from './Admin/Screens/DashboardScreen';
+import ProductScreen from './Admin/Screens/ProductScreen';
+import CategoryScreen from './Admin/Screens/CategoryScreen';
+import OrdersScreen from './Admin/Screens/OrdersScreen';
+import UsersScreen from './Admin/Screens/UsersScreen';
+import TransactionScreen from './Admin/Screens/TransactionScreen';
+import AddProduct from './Admin/Screens/AddProduct';
+import EditProduct from './Admin/Screens/EditProduct';
+import OrderDetails from './Admin/Screens/OrderDetails';
+
 
 function App() {
   return (
     <div className="App">
       <ToastContainer position="top-right" limit={1} />
       <Router>
-        <Header />
         <Routes>
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="/about" element={<About />} />
@@ -49,9 +61,20 @@ function App() {
           <Route path="/editprofile" element={<EditProfile />} />
           <Route path="/orderhistory" element={<OrderHistory />} />
           <Route path="/creator" element={<CommingSoon />} />
+          <Route path="/admin" element={<Signin />} />
+          <Route path="/navigation" element={<Dashnav />} />
+          <Route path="/navigation/dashboard" element={<DashboardScreen />} />
+          <Route path="/product" element={<ProductScreen />} />
+          <Route path="/category" element={<CategoryScreen />} />
+          <Route path="/orders" element={<OrdersScreen />} />
+          <Route path="/transaction" element={<TransactionScreen />} />
+          <Route path="/users" element={<UsersScreen />} />
+          <Route path="/add" element={<AddProduct />} />
+          <Route path="/edit/:id" element={<EditProduct />} />
+          <Route path="/updateorder/:id" element={<OrderDetails />} />
           <Route path="*" element={<Error />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </div>
   );

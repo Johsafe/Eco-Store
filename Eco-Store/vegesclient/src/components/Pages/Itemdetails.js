@@ -39,7 +39,7 @@ const Itemdetails = () => {
       `http://localhost:5000/api/products/${product._id}`
     );
     const data = await response.json();
-    console.table(data);
+    // console.table(data);
 
     if (data.inStock < quantity) {
       window.alert('Sorry!! ,Product is out of stock');
