@@ -5,6 +5,7 @@ import Badge from 'react-bootstrap/Badge';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { LinkContainer } from 'react-router-bootstrap';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 import logo from '../../images/logo.png';
 import {
@@ -15,7 +16,7 @@ import {
   Close,
 } from '@mui/icons-material';
 import { Store } from '../Store';
-import { ToastContainer } from 'react-toastify';
+// import { ToastContainer } from 'react-toastify';
 
 const Header = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -39,7 +40,7 @@ const Header = () => {
     // <Container>
 
     <div className="header">
-      <ToastContainer position="bottom-center" limit={1} />
+      {/* <ToastContainer position="bottom-center" limit={1} /> */}
       <div className="headerLogo">
         <Link to="/">
           <img src={logo} alt="Jose's Eco-Store" />
@@ -79,7 +80,7 @@ const Header = () => {
             )}
           </Link>
         </div>
-        {/* title={userInfo.name}  */}
+
         <div>
           {userInfo ? (
             <Nav className="me-auto">
@@ -91,13 +92,14 @@ const Header = () => {
                   <NavDropdown.Item>Order Info</NavDropdown.Item>
                 </LinkContainer>
 
-                <NavDropdown.Item href="#action/3.3">Setting</NavDropdown.Item>
+                {/* <NavDropdown.Item href="#action/3.3">Setting</NavDropdown.Item> */}
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">
                   <Link
                     className="dropdown-item"
                     to="#signout"
                     onClick={signoutHandler}
+                    
                   >
                     Sign Out
                   </Link>
@@ -105,16 +107,52 @@ const Header = () => {
               </NavDropdown>
             </Nav>
           ) : (
-            <Link className="nav-link" to="/signin">
-              <PersonOutlineTwoTone style={styleIcon} className="iconsPerson" />
-            </Link>
+            // <NavDropdown>
+            //   <PersonOutlineTwoTone
+            //         style={styleIcon}
+            //         className="iconsPerson"
+            //       />
+            //   <LinkContainer to="/signin">
+            //     <NavDropdown.Item>
+            //       {' '}
+            //       Customer
+            //     </NavDropdown.Item>
+            //   </LinkContainer>
+            //   <LinkContainer to="/admin">
+            //     <NavDropdown.Item> Admin </NavDropdown.Item>
+            //   </LinkContainer>
+            // </NavDropdown>
+            <Dropdown>
+              <Dropdown.Toggle
+                variant="success"
+                id="dropdown-basic"
+                style={{
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  color: 'black',
+                }}
+              >
+                <PersonOutlineTwoTone
+                  style={styleIcon}
+                  className="iconsPerson"
+                />
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item href="/admin">Admin</Dropdown.Item>
+                <Dropdown.Item href="/signin">Customer</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            // <Link className="nav-link" to="/signin">
+
+            // </Link>
           )}
         </div>
-        <div>
+        {/* <div>
           <Link className="links" to="/admin">
-            Admin{' '}
+           
           </Link>
-        </div>
+        </div> */}
       </div>
 
       <button className="menuIcon" onClick={() => setshowNav(!showNav)}>

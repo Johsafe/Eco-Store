@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import welcome from '../../images/welcome.png';
 import classes from '../css/Signin.module.css';
+import Footer from '../footer';
 import Header from '../Layout/header';
 import { Store } from '../Store';
 import { getError } from '../utils/GetError';
@@ -73,7 +74,7 @@ function LoginScreen() {
             />
 
             <input
-              type="text"
+              type="password"
               placeholder="Enter Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -92,6 +93,7 @@ function LoginScreen() {
           </form>
         </div>
       </div>
+      <Footer/> 
     </div>
   );
 }

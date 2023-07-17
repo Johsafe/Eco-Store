@@ -1,21 +1,19 @@
-import React from 'react'
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
 // import NavDropdown from 'react-bootstrap/NavDropdown';
 
-
 export default function Header() {
   return (
     <div>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="lg" bg="success" variant="success">
         <Container>
           <Navbar.Brand href="/">Admin Dashboard</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              
               {/* <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
@@ -32,7 +30,13 @@ export default function Header() {
             </Nav>
             <Nav>
               <li className="nav-item">
-                <NavLink to="/admin" className="nav-link">Signin</NavLink>
+                <NavLink
+                  to="/admin"
+                  className="nav-link"
+                  style={{ backgroundColor: 'transparent' }}
+                >
+                  Signin
+                </NavLink>
               </li>
               {/* <li  className="nav-item">
                 <NavLink to="/signup" className="nav-link">Signup </NavLink>
@@ -45,5 +49,5 @@ export default function Header() {
         </Container>
       </Navbar>
     </div>
-  )
+  );
 }

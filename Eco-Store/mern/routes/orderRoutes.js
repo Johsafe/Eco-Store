@@ -54,7 +54,9 @@ orderRouter.delete('/:id', isAuth, async (req, res) => {
   const order = await Order.findOne({ _id: req.params.id });
   if (order) {
     const deletedOrder = await order.remove();
-    res.status(201).send({ message: ' Order successfully deleted', deletedOrder });
+    res
+      .status(201)
+      .send({ message: ' Order successfully deleted', deletedOrder });
   } else {
     res.status(404).send('Order Not Found.');
   }

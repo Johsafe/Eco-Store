@@ -38,7 +38,6 @@ import AddProduct from './Admin/Screens/AddProduct';
 import EditProduct from './Admin/Screens/EditProduct';
 import OrderDetails from './Admin/Screens/OrderDetails';
 
-
 function App() {
   return (
     <div className="App">
@@ -62,7 +61,8 @@ function App() {
           <Route path="/orderhistory" element={<OrderHistory />} />
           <Route path="/creator" element={<CommingSoon />} />
           <Route path="/admin" element={<Signin />} />
-          <Route path="/navigation" element={<Dashnav />} />
+          {/* <Route path="/navigation" element={<Dashnav />} /> */}
+          <Route path="/navigation" element={<ProductScreen />} />
           <Route path="/navigation/dashboard" element={<DashboardScreen />} />
           <Route path="/product" element={<ProductScreen />} />
           <Route path="/category" element={<CategoryScreen />} />
@@ -70,7 +70,7 @@ function App() {
           <Route path="/transaction" element={<TransactionScreen />} />
           <Route path="/users" element={<UsersScreen />} />
           <Route path="/add" element={<AddProduct />} />
-          <Route path="/edit/:id" element={<EditProduct />} />
+          <Route path="/:id/edit" element={<EditProduct />} />
           <Route path="/updateorder/:id" element={<OrderDetails />} />
           <Route path="*" element={<Error />} />
         </Routes>

@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate, useParams } from 'react-router-dom';
 import classes from '../css/Itemdetails.module.css';
+import Footer from '../footer';
+import Header from '../Layout/header';
 import { Store } from '../Store';
 
 const Itemdetails = () => {
@@ -56,6 +58,7 @@ const Itemdetails = () => {
 
   return (
     <div>
+      <Header/>
       <Helmet>
         <title>{product.name}</title>
       </Helmet>
@@ -74,10 +77,10 @@ const Itemdetails = () => {
             <p>Price :</p>
             <p>Ksh.{product.price}</p>
           </div>
-          <div className={classes.detailQty}>
+          {/* <div className={classes.detailQty}>
             <p>Quantity :</p>
             <p>{product.qty}</p>
-          </div>
+          </div> */}
           <div className={classes.detailDescr}>
             <p>description :</p>
             <p>{product.description}</p>
@@ -119,6 +122,7 @@ const Itemdetails = () => {
           </div>
         </div>
       </div>
+      <Footer/> 
     </div>
   );
 };

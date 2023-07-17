@@ -17,6 +17,7 @@ import gallery10 from '../../images/gallery10.jpg';
 import gallery11 from '../../images/gallery11.jpg';
 import gallery12 from '../../images/gallery12.jpg';
 import Header from '../Layout/header';
+import Footer from '../footer';
 
 const About = () => {
   let navigate = useNavigate();
@@ -86,6 +87,7 @@ const About = () => {
           <img src={gallery12} alt="" />
         </div>
       </div>
+      <Footer /> 
     </div>
   );
 };

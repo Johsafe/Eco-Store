@@ -1,23 +1,23 @@
 import express from 'express';
 import bcrypt from 'bcryptjs';
 import expressAsyncHandler from 'express-async-handler';
-import User from '../models/userModel.js';
-import { isAdmin, isAuth } from '../Middleware/AuthMiddleware.js';
-import {  generateToken } from '../utils/jwt.js';
+import Admin from '../models/AdminUserModel.js';
+import { isAuth } from '../Middleware/AuthMiddleware.js';
+import { generateToken } from '../utils/jwt.js';
 
-const userRouter = express.Router();
+const adminRouter = express.Router();
 
-userRouter.post(
-  '/login',
+adminRouter.post(
+  '/adminlogin',
   expressAsyncHandler(async (req, res) => {
-    const {email ,password} = req.body;
+    const { email, password } = req.body;
 
     if (!email || !password) {
       res.status(400);
       throw new Error('Please add all fields');
     }
-  
-    const user = await User.findOne({ email });
+
+    const user = await Admin.findOne({ email });
     if (user && (await bcrypt.compare(password, user.password))) {
       res.send({
         _id: user.id,
@@ -32,22 +32,22 @@ userRouter.post(
   })
 );
 
-userRouter.post(
-  '/register',
+adminRouter.post(
+  '/adminregister',
   expressAsyncHandler(async (req, res) => {
     const { name, email, password } = req.body;
 
-  if (!name || !email || !password) {
-    res.status(400);
-    throw new Error('Please add all fields');
-  }
+    if (!name || !email || !password) {
+      res.status(400);
+      throw new Error('Please add all fields');
+    }
 
-  if (password.length < 7) {
-    res.status(400);
-    throw new Error("Password must be up to 7 characters");
-  }
+    if (password.length < 7) {
+      res.status(400);
+      throw new Error('Password must be up to 7 characters');
+    }
 
-    const userExists = await User.findOne({ email });
+    const userExists = await Admin.findOne({ email });
 
     if (userExists) {
       res.status(400);
@@ -56,12 +56,12 @@ userRouter.post(
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-    const user = await User.create({
+    const user = await Admin.create({
       name,
       email,
       password: hashedPassword,
     });
-  
+
     // const user = await newUser.save();
     if (user) {
       res.status(201).json({
@@ -75,14 +75,13 @@ userRouter.post(
       res.status(400);
       throw new Error('Invalid user data');
     }
-  
   })
 );
-userRouter.put(
+adminRouter.put(
   '/profile',
   isAuth,
   expressAsyncHandler(async (req, res) => {
-    const user = await User.findById(req.user._id);
+    const user = await Admin.findById(req.user._id);
     if (user) {
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
@@ -104,37 +103,12 @@ userRouter.put(
   })
 );
 
-//create admin user
-userRouter.post(
-  '/loginadmin',isAdmin,
-  expressAsyncHandler(async (req, res) => {
-    const {email ,password} = req.body;
-
-    if (!email || !password) {
-      res.status(400);
-      throw new Error('Please add all fields');
-    }
-  
-    const user = await User.findOne({ email });
-    if (user && (await bcrypt.compare(password, user.password))) {
-      res.send({
-        _id: user.id,
-        name: user.name,
-        email: user.email,
-        isAdmin: user.isAdmin,
-        token: generateToken(user),
-      });
-      return;
-    }
-    res.status(401).send({ message: 'Not authorized' });
-  })
-   
-);
-
 //get all users
-userRouter.get('/', expressAsyncHandler(async(req,res) =>{
-
-  const users = await User.find({})
-  res.send(users);
-}))
-export default userRouter;
+adminRouter.get(
+  '/',
+  expressAsyncHandler(async (req, res) => {
+    const users = await Admin.find({});
+    res.send(users);
+  })
+);
+export default adminRouter;

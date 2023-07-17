@@ -9,6 +9,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import LoadingBox from '../utils/LoadingBox';
 import { getError } from '../utils/GetError';
 import axios from 'axios';
+import Header from '../Layout/header';
+import Footer from '../footer';
+
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -92,6 +95,7 @@ export default function PlaceOrderScreen() {
 
   return (
     <div>
+      <Header/>
       <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
       <Helmet>
         <title>Order Screen</title>
@@ -210,6 +214,7 @@ export default function PlaceOrderScreen() {
           {loading && <LoadingBox></LoadingBox>}
         </div>
       </div>
+      <Footer/> 
     </div>
   );
 }

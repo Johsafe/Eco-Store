@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import classes from '../css/Error.module.css';
 
 import errorBg from '../../images/error.png';
+import Footer from '../footer';
 
 const Error = () => {
   let navigate = useNavigate();
@@ -27,6 +28,7 @@ const Error = () => {
           </button>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

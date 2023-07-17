@@ -9,6 +9,7 @@ import MessageBox from '../utils/MessageBox';
 // import moment from 'moment';
 import { Visibility } from '@mui/icons-material';
 import Header from '../Layout/header';
+import Footer from '../footer';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -79,6 +80,7 @@ export default function OrderHistory() {
             // boxShadow: '1px 2px',
             padding: '1rem',
             width: '75rem',
+            paddingBottom:'15rem'
           }}
         >
           <table className="table table-hover">
@@ -128,6 +130,7 @@ export default function OrderHistory() {
           </table>
         </div>
       )}
+      <Footer/> 
     </div>
     // }
   );

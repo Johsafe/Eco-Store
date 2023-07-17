@@ -5,6 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Store } from '../Store';
 import classes from '../css/Cart.module.css';
 import EmptyCart from './EmptyCart';
+import Header from '../Layout/header';
+import Footer from '../footer';
 
 export default function Cart() {
   const navigate = useNavigate();
@@ -41,11 +43,12 @@ export default function Cart() {
 
   return (
     <div>
+      <Header/>
       <Helmet>
         <title>Shopping Cart</title>
       </Helmet>
 
-      <div className={classes.header}>
+      <div className={classes.headers}>
         <h1>My Shopping Cart</h1>
       </div>
       <div className={classes.shopping}>
@@ -136,6 +139,7 @@ export default function Cart() {
           </div>
         )}
       </div>
+      <Footer/> 
     </div>
   );
 }

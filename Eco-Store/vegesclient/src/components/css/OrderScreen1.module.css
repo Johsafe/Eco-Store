@@ -7,7 +7,7 @@
   margin-left: 5rem;
   width: 77rem;
   padding-bottom: 2rem;
-  height: 22rem;
+  height: 21rem;
   background-color: rgb(159, 240, 159);
 }
 .orderHead h1 {
@@ -93,7 +93,7 @@ th {
   cursor: pointer;
   background-color: rgb(159, 240, 159);
   border: none;
-  padding: 1rem;
+  padding: 0.5rem;
   font-size: 1rem;
   font-weight: 800;
 }

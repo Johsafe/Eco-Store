@@ -2,6 +2,7 @@ import React from 'react';
 import classes from '../css/Home.module.css';
 import HomeBg from '../../images/HomeBg.png';
 import feature from '../../images/features.png';
+import Footer from '../footer';
 
 const Home = () => {
   return (
@@ -41,6 +42,7 @@ const Home = () => {
           <button>Get The Deal</button>
         </div>
       </div>
+      <Footer/> 
     </div>
   );
 };

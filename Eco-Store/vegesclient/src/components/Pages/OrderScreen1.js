@@ -11,6 +11,7 @@ import MessageBox from '../utils/MessageBox';
 import mpesa from '../../images/mpesa.png'
 import paypal from '../../images/paypal.png'
 import Header from '../Layout/header';
+import Footer from '../footer';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -222,6 +223,7 @@ export default function OrderScreen1() {
           </div>
         </div>
       </div>
+      <Footer/> 
     </div>
   );
 }

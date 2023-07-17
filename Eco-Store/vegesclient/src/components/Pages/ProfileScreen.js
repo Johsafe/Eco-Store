@@ -5,6 +5,8 @@ import '../css/Profile.css';
 import { Store } from '../Store';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import Header from '../Layout/header';
+import Footer from '../footer';
 
 export default function ProfileScreen() {
 
@@ -12,6 +14,7 @@ export default function ProfileScreen() {
   const { userInfo } = state;
   return (
     <div>
+      <Header/>
       <Helmet>
         <title>User Profile</title>
       </Helmet>
@@ -78,6 +81,7 @@ export default function ProfileScreen() {
           </div>
         </div>
       </div>
+      <Footer/> 
     </div>
   );
 }

@@ -23,7 +23,7 @@ import productRouter from './routes/productRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import orderRouter from './routes/orderRoutes.js';
 import categoryRouter from './routes/categoryRoutes.js';
-
+import adminRouter from './routes/adminUserRoute.js';
 
 const app = express();
 app.use(express.json());
@@ -31,13 +31,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 // app.use(bodyParser.urlencoded({ extended: false }))
 // app.use(bodyParser.json())
-app.use(express.static(path.join(__dirname, 'uploads')))
+app.use(express.static(path.join(__dirname, 'uploads')));
 
 app.use('/api/data', dataRouter);
 app.use('/api/products', productRouter);
 app.use('/api/users', userRouter);
-app.use('/api/orders' ,orderRouter);
-app.use('/api/category' ,categoryRouter);
+app.use('/api/orders', orderRouter);
+app.use('/api/category', categoryRouter);
+app.use('/api/admin', adminRouter);
 
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });

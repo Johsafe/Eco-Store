@@ -16,10 +16,9 @@ const orderSchema = new mongoose.Schema(
         name: {
           type: String,
           required: true,
-          unique: true,
           trim: true,
         },
-        slug: { type: String, required: true, unique: true },
+        slug: { type: String, required: true },
         price: {
           type: Number,
           required: true,

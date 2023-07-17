@@ -7,6 +7,7 @@ import axios from 'axios';
 import MessageBox from './utils/MessageBox';
 import LoadingBox from './utils/LoadingBox';
 import logger from 'use-reducer-logger';
+import Footer from './footer';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -76,6 +77,7 @@ const Itemlist = () => {
           </Container>
         )}
       </div>
+      <Footer/> 
     </div>
   );
 };

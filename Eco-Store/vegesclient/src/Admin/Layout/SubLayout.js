@@ -5,12 +5,10 @@ import Dashnav from '../utils/Dashnav';
 
 export default function SubLayout(props) {
   return (
-    <div style={{display:'flex'}}>
-      
+    <div style={{ display: 'flex' }}>
       {/* <Subheader /> */}
-      <Dashnav/>
+      <Dashnav />
       <Container style={{ paddingTop: '1rem' }}>{props.children}</Container>
-     
     </div>
   );
 }

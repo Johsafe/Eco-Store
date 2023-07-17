@@ -5,6 +5,8 @@ import Form from 'react-bootstrap/Form';
 import { Store } from '../Store';
 import { useNavigate } from 'react-router-dom';
 import paymentbg from '../../images/paymentbg.png';
+import Header from '../Layout/header';
+import Footer from '../footer';
 
 export default function PaymentScreen() {
   const navigate = useNavigate();
@@ -31,6 +33,7 @@ export default function PaymentScreen() {
 
   return (
     <div>
+      <Header/>
       <CheckoutSteps step1 step2 step3></CheckoutSteps>
       <Helmet>
         <title>Payment Method</title>
@@ -72,6 +75,7 @@ export default function PaymentScreen() {
         </Form>
       </div>
     </div>
+    <Footer/> 
     </div>
   );
 }

@@ -12,8 +12,15 @@ import Logout from '@mui/icons-material/Logout';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import NightlightIcon from '@mui/icons-material/Nightlight';
 import SearchIcon from '@mui/icons-material/Search';
+import { useNavigate } from 'react-router-dom';
 
 export default function Subheader() {
+  const navigate = useNavigate();
+  let user = JSON.parse(localStorage.getItem('Info'));
+  function logOut() {
+    localStorage.clear();
+    navigate('/admin');
+  }
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -38,35 +45,49 @@ export default function Subheader() {
       <div>
         <form>
           <div className="input-group">
-            <div class="form-outline" style={{width:'36rem' }}>
+            <div class="form-outline" style={{ width: '36rem' }}>
               <input
-                 
                 type="search"
                 id="form1"
                 class="form-control"
-                placeholder="Type query"
+                placeholder="Search..."
                 aria-label="Search"
               />
             </div>
-         
-         
-            <button type="button" className="btn btn-primary">
+
+            {/* <button
+              type="button"
+              style={{
+                width: '5rem',
+                padding: '0.4rem',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                background: 'blue',
+                color: 'white',
+              }}
+            >
               <SearchIcon />
-            </button>
+            </button> */}
           </div>
         </form>
       </div>
       <React.Fragment>
         <Box
-          sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' ,marginRight:'2rem'}}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            textAlign: 'center',
+            marginRight: '2rem',
+          }}
         >
-          <Typography sx={{ minWidth: 50 }}>
+          {/* <Typography sx={{ minWidth: 50 }}>
             <NightlightIcon />
           </Typography>
-          <Typography sx={{ minWidth: 50 }} >
+          <Typography sx={{ minWidth: 50 }}>
             <NotificationsIcon />
           </Typography>
-          <Typography sx={{ minWidth: 50 }}>Eng</Typography>
+          <Typography sx={{ minWidth: 50 }}>Eng</Typography> */}
           <Tooltip title="Account settings">
             <IconButton
               onClick={handleClick}
@@ -77,6 +98,7 @@ export default function Subheader() {
               aria-expanded={open ? 'true' : undefined}
             >
               <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+              {user.name}
             </IconButton>
           </Tooltip>
         </Box>
@@ -115,7 +137,7 @@ export default function Subheader() {
           transformOrigin={{ horizontal: 'right', vertical: 'top' }}
           anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
-          <MenuItem>
+          {/* <MenuItem>
             <Avatar /> Profile
           </MenuItem>
           <MenuItem>
@@ -123,8 +145,8 @@ export default function Subheader() {
               <Settings fontSize="small" />
             </ListItemIcon>
             Settings
-          </MenuItem>
-          <MenuItem>
+          </MenuItem> */}
+          <MenuItem onClick={logOut}>
             <ListItemIcon>
               <Logout fontSize="small" />
             </ListItemIcon>

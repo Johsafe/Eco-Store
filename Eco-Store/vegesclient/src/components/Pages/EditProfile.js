@@ -6,6 +6,8 @@ import { getError } from '../utils/GetError';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Header from '../Layout/header';
+import Footer from '../footer';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -61,6 +63,9 @@ export default function EditProfile() {
     }
   };
   return (
+    <div>
+      <Header/>
+    
     <div
       style={{
         width: '23rem',
@@ -69,6 +74,7 @@ export default function EditProfile() {
         marginBottom: '3rem',
       }}
     >
+      
       <Helmet>
         <title> User Profile</title>
       </Helmet>
@@ -108,6 +114,9 @@ export default function EditProfile() {
           <button className="btn-sm btn-success">Update</button>
         </div>
       </form>
+      
+    </div>
+    <Footer  /> 
     </div>
   );
 }

@@ -2,10 +2,11 @@
   margin: 0;
   padding: 0;
 } */
-.header {
+.headers {
   padding-top: 5rem;
+  padding-bottom: 4rem;
 }
-.header h1 {
+.headers h1 {
   text-align: center;
 }
 .shopping {

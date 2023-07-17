@@ -1,0 +1,60 @@
+a,
+a:hover,
+a:focus {
+  color: inherit;
+}
+
+body {
+  background-color: #f1f2f3;
+}
+.profile-card-2 {
+  max-width: 200px;
+  height: 250px;
+  background-color: #fff;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+  background-position: center;
+  overflow: hidden;
+  position: relative;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.profile-card-2 img {
+  transition: all linear 0.25s;
+  width: 100%;
+}
+
+.profile-card-2 .profile-name {
+  position: absolute;
+  left: 10px;
+  bottom: 40px;
+  font-size: 22px;
+  color: #fff;
+  text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  transition: all linear 0.25s;
+}
+
+.profile-card-2 .profile-username {
+  position: absolute;
+  bottom: 20px;
+  left: 10px;
+  color: #fff;
+  font-size: 13px;
+  transition: all linear 0.25s;
+}
+
+
+
+.profile-card-2:hover img {
+  filter: grayscale(100%);
+}
+
+.profile-card-2:hover .profile-name {
+  bottom: 90px;
+}
+
+.profile-card-2:hover .profile-username {
+  bottom: 70px;
+}

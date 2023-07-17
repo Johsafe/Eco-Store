@@ -4,7 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import classes from '../css/ShippingScreen.module.css';
 import { Store } from '../Store';
 import CheckoutSteps from '../utils/CheckoutSteps';
-import shipping from '../../images/shipping.png'
+import shipping from '../../images/shipping.png';
+import Header from '../Layout/header';
+import Footer from '../footer';
 
 const ShippingScreen = () => {
   const navigate = useNavigate();
@@ -53,6 +55,7 @@ const ShippingScreen = () => {
   };
   return (
     <div>
+      <Header />
       <Helmet>
         <title>Shipping Address </title>
       </Helmet>
@@ -87,14 +90,14 @@ const ShippingScreen = () => {
             />
             <input
               type="text"
-              placeholder="Enter Your City"
+              placeholder="Enter Your Town"
               value={city}
               required
               onChange={(e) => setCity(e.target.value)}
             />
             <input
               type="text"
-              placeholder="Enter Your Postal"
+              placeholder="Enter Your Postal-Code"
               value={postalCode}
               required
               onChange={(e) => setPostalCode(e.target.value)}
@@ -104,6 +107,7 @@ const ShippingScreen = () => {
           </form>
         </div>
       </div>
+      <Footer/> 
     </div>
   );
 };

@@ -90,35 +90,28 @@ productRouter.get('/:id', async (req, res) => {
 //update product
 productRouter.patch(
   '/:id',
+  // upload.single('productImage'),
   isAuth,
   expressAsyncHandler(async (req, res) => {
     const { id } = req.params;
 
-    const updatedProduct = await Product.findOneAndUpdate(
-      { _id: id },
-      {
-        ...req.body
-      }
-    );
-    if (!updatedProduct) {
-      res.status(500).send({ message: ' Error in Updating Product.' });
-    }
-    if (updatedProduct) {
-      return res
-        .status(200)
-        .send({ message: 'Product Updated', data: updatedProduct });
+    try {
+      const { name, description, price, inStock } = req.body;
+      const product = await Product.findByIdAndUpdate(id, {
+        name,
+        // slug: slugify(name),
+        description,
+        price,
+        inStock,
+        // productImage: req.file.filename,
+      });
+      const products = await Product.find();
+      res.status(200).json(products);
+    } catch (err) {
+      console.error(err.message);
     }
   })
 );
-
-//updatedProduct
-productRouter.put('/product/:id', (req, res)=>{
-  let result = Product.updateOne(
-    {_id:req.params.id},
-    {$set: req.body}
-  )
-  res.send(result)
-})
 
 //delete a product
 productRouter.delete(

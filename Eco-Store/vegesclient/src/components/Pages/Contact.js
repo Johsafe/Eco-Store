@@ -10,6 +10,7 @@ import Address from '../../images/Address.png';
 import Message from '../../images/Message.png';
 import Telephone from '../../images/Telephone.png';
 import Header from '../Layout/header';
+import Footer from '../footer';
 
 const Contact = () => {
   let navigate = useNavigate();
@@ -75,6 +76,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      <Footer /> 
     </div>
   );
 };
